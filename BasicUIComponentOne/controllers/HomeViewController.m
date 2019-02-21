@@ -11,6 +11,14 @@
 #import "Utils.h"
 #import "NoticeResponse.h"
 #import "NoticeTableViewCell.h"
+#import "AMTumblrHud.h"
+#import "UIScrollView+EmptyDataSet.h"
+
+
+#define UIColorFromRGB(rgbValue) [UIColor \
+colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
+green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
+blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 @interface HomeViewController ()
 
@@ -21,6 +29,23 @@ NSMutableArray *noticeList = nil;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = [NSString stringWithFormat:@"Welcome %@",self.name];
+    
+    //initialize empty view
+    self.tvNotice.emptyDataSetSource = self;
+    self.tvNotice.emptyDataSetDelegate = self;
+    
+    // A little trick for removing the cell separators
+    self.tvNotice.tableFooterView = [UIView new];
+    
+    //initialize loading view
+//    self.view.backgroundColor = UIColorFromRGB(0x34465C);
+//
+//    AMTumblrHud *tumblrHUD = [[AMTumblrHud alloc] initWithFrame:CGRectMake((CGFloat) ((self.view.frame.size.width - 55) * 0.5),(CGFloat) ((self.view.frame.size.height - 20) * 0.5), 55, 20)];
+//    tumblrHUD.hudColor = UIColorFromRGB(0xF1F2F3);
+//    [self.view addSubview:tumblrHUD];
+//    [tumblrHUD showAnimated:YES];
+    
     noticeList = [[NSMutableArray alloc]init];
     
     self.tvNotice.dataSource = self;
@@ -30,36 +55,35 @@ NSMutableArray *noticeList = nil;
     self.tvNotice.rowHeight = UITableViewAutomaticDimension;
     [self.tvNotice registerNib:[UINib nibWithNibName:@"NoticeTableViewCell" bundle:nil] forCellReuseIdentifier:@"NoticeTableViewCell"];
     
+    
     Utils *util = [[Utils alloc]init];
-    self.title = [NSString stringWithFormat:@"Welcome %@",self.name];
     
     NSString *urlString = @"https://api.myjson.com/bins/1bsqcn/";
-    NSDictionary *dictData = [NetworkManager parseJsonResponse:urlString];
-    if (dictData) {
-        [util showAlert:self title:@"success" andMessage:@"successfully loaded"];
-        
-        NSLog(@"Notice Count : %lu", (unsigned long)dictData.count);
-        
-        
-        for (NSDictionary* data in dictData) {
-            NTNoticeList *notice = [[NTNoticeList alloc]init];
-            notice.identifier = data[@"id"];
-            notice.title = data[@"title"];
-            notice.brief = data[@"brief"];
-            notice.filesource = data[@"filesource"];
-            [noticeList addObject:notice];
+//    NSDictionary *dictData = [NetworkManager parseJsonResponse:urlString];
+    [NetworkManager parseJsonResponse:urlString completion:^(NSDictionary *dictData) {
+        if (dictData) {
+            NSLog(@"Notice Count : %lu", (unsigned long)dictData.count);
+            for (NSDictionary* data in dictData) {
+                NTNoticeList *notice = [[NTNoticeList alloc]init];
+                notice.identifier = data[@"id"];
+                notice.title = data[@"title"];
+                notice.brief = data[@"brief"];
+                notice.filesource = data[@"filesource"];
+                [noticeList addObject:notice];
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+//                 [tumblrHUD setHidden:true];
+                [util showAlert:self title:@"success" andMessage:@"successfully loaded"];
+                [self.tvNotice reloadData];
+            });
         }
-        [self.tvNotice reloadData];
-//        for (int i=0; i<noticeList.count; i++) {
-//            NTNoticeList *notice = [[NTNoticeList alloc]init];
-//            notice = [noticeList objectAtIndex:i];
-//            NSLog(@"Title : %@",notice.title);
-//        }
-    }
-    else
-    {
-        [util showAlert:self title:@"failure" andMessage:@"cann't get data"];
-    }
+        else
+        {
+//            [tumblrHUD setHidden:false];
+            [util showAlert:self title:@"failure" andMessage:@"cann't get data"];
+        }
+    }];
+    
 }
 - (IBAction)onClickBackButton:(UIBarButtonItem *)sender {
     [self dismissViewControllerAnimated:true completion:nil];
@@ -76,6 +100,18 @@ NSMutableArray *noticeList = nil;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:true];
+}
+
+- (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView
+{
+    return UIColorFromRGB(0x34465C);
+}
+
+- (UIView *)customViewForEmptyDataSet:(UIScrollView *)scrollView
+{
+    UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    [activityView startAnimating];
+    return activityView;
 }
 
 @end

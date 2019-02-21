@@ -1,0 +1,20 @@
+PODS:
+  - AMTumblrHud (1.0.1)
+  - DZNEmptyDataSet (1.8.1)
+
+DEPENDENCIES:
+  - AMTumblrHud
+  - DZNEmptyDataSet
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AMTumblrHud
+    - DZNEmptyDataSet
+
+SPEC CHECKSUMS:
+  AMTumblrHud: 095daf71c57d4e47d11a8432dba1ed6177a35115
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+
+PODFILE CHECKSUM: e198df17ae04e095bb8a44685c5569bb1201b532
+
+COCOAPODS: 1.5.3

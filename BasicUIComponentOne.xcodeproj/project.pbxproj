@@ -19,9 +19,11 @@
 		6AB7895F221BC883000E9DF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AB7895E221BC883000E9DF2 /* Assets.xcassets */; };
 		6AB78962221BC883000E9DF2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AB78960221BC883000E9DF2 /* LaunchScreen.storyboard */; };
 		6AB78965221BC883000E9DF2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB78964221BC883000E9DF2 /* main.m */; };
+		7ADA4F0100A76BCAE1E0AEC9 /* libPods-BasicUIComponentOne.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01441A4C9C8FF46181F848CF /* libPods-BasicUIComponentOne.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		01441A4C9C8FF46181F848CF /* libPods-BasicUIComponentOne.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BasicUIComponentOne.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A82806C221D1BCB001AC412 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		6A82806D221D1BCB001AC412 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		6A828072221D42D4001AC412 /* NetworkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
@@ -43,6 +45,8 @@
 		6AB78961221BC883000E9DF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6AB78963221BC883000E9DF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6AB78964221BC883000E9DF2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		96C43DFDE113FE2B8890465E /* Pods-BasicUIComponentOne.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasicUIComponentOne.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BasicUIComponentOne/Pods-BasicUIComponentOne.debug.xcconfig"; sourceTree = "<group>"; };
+		C76064A6E816CFA2A70E6A88 /* Pods-BasicUIComponentOne.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasicUIComponentOne.release.xcconfig"; path = "Pods/Target Support Files/Pods-BasicUIComponentOne/Pods-BasicUIComponentOne.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,12 +54,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7ADA4F0100A76BCAE1E0AEC9 /* libPods-BasicUIComponentOne.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		540EFBC7FF062070A6B0AD90 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				01441A4C9C8FF46181F848CF /* libPods-BasicUIComponentOne.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		6A82806B221D1BB6001AC412 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,6 +157,8 @@
 			children = (
 				6AB78954221BC882000E9DF2 /* BasicUIComponentOne */,
 				6AB78953221BC882000E9DF2 /* Products */,
+				7A5F75D63E0F4DF5FCE066D1 /* Pods */,
+				540EFBC7FF062070A6B0AD90 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -171,6 +186,15 @@
 			path = BasicUIComponentOne;
 			sourceTree = "<group>";
 		};
+		7A5F75D63E0F4DF5FCE066D1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				96C43DFDE113FE2B8890465E /* Pods-BasicUIComponentOne.debug.xcconfig */,
+				C76064A6E816CFA2A70E6A88 /* Pods-BasicUIComponentOne.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -178,6 +202,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6AB78968221BC883000E9DF2 /* Build configuration list for PBXNativeTarget "BasicUIComponentOne" */;
 			buildPhases = (
+				88FEA09F2DAEF24F29D7DF3A /* [CP] Check Pods Manifest.lock */,
 				6AB7894E221BC882000E9DF2 /* Sources */,
 				6AB7894F221BC882000E9DF2 /* Frameworks */,
 				6AB78950221BC882000E9DF2 /* Resources */,
@@ -236,6 +261,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		88FEA09F2DAEF24F29D7DF3A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BasicUIComponentOne-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6AB7894E221BC882000E9DF2 /* Sources */ = {
@@ -389,6 +439,7 @@
 		};
 		6AB78969221BC883000E9DF2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 96C43DFDE113FE2B8890465E /* Pods-BasicUIComponentOne.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -405,6 +456,7 @@
 		};
 		6AB7896A221BC883000E9DF2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C76064A6E816CFA2A70E6A88 /* Pods-BasicUIComponentOne.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

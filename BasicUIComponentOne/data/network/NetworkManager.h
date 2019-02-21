@@ -10,6 +10,7 @@
 #define NetworkManager_h
 @interface NetworkManager : NSObject
 +(NSDictionary *)parseJsonResponse:(NSString *)urlString;
++(void)parseJsonResponse:(NSString *)urlString completion:(void (^)(NSDictionary *))completion;
 @end
 
 

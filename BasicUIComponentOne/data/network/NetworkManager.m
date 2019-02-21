@@ -22,6 +22,7 @@
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse: nil error:&error];
+    
     if (!data)
     {
         NSLog(@"Download Error: %@", error.localizedDescription);
@@ -35,6 +36,37 @@
                                       error: &error];
     NSLog(@"Network Response : %@", JSON[@"notice_list"]);
     return JSON[@"notice_list"];
+}
+
++(void)parseJsonResponse:(NSString *)urlString completion:(void (^)(NSDictionary *))completion
+{
+    NSError *error;
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"GET"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                            completionHandler:
+                                  ^(NSData *data, NSURLResponse *response, NSError *error) {
+                                      NSLog(@"NSURL Response %@", data);
+                                      if (!data)
+                                      {
+                                          NSLog(@"Download Error: %@", error.localizedDescription);
+                                          completion(nil);
+                                      }
+                                      
+                                      // Parse the (binary) JSON data from the web service into an NSDictionary object
+                                      NSDictionary *JSON =
+                                      [NSJSONSerialization JSONObjectWithData: data
+                                                                      options: NSJSONReadingMutableContainers
+                                                                        error: &error];
+                                      NSLog(@"Network Response : %@", JSON[@"notice_list"]);
+                                      completion(JSON[@"notice_list"]);
+                                  }];
+    
+    [task resume];
 }
 
 -(void) getData{
