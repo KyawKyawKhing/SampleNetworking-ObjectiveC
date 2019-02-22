@@ -8,8 +8,10 @@
 
 #import "NoticeTableViewCell.h"
 #import "NoticeResponse.h"
+#import "NoticeTableViewDelegate.h"
 
 @implementation NoticeTableViewCell
+
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -33,6 +35,17 @@
     self.lblNotice.text = lastLetter;
     self.lblTitle.text = data.title;
     self.lblBrief.text = data.brief;
+    NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:data.filesource];
+    [attributeString addAttribute:NSUnderlineStyleAttributeName
+                            value:[NSNumber numberWithInt:1]
+                            range:(NSRange){0,[attributeString length]}];
+    
+    self.lblFileSource.attributedText = attributeString;
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onClickFileSource)];
+    [self.lblFileSource addGestureRecognizer:tapGesture];
 }
 
+-(void)onClickFileSource{
+    [self.delgate clickOnFileSource:self.lblFileSource.text];
+}
 @end

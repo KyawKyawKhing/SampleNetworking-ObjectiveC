@@ -24,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		01441A4C9C8FF46181F848CF /* libPods-BasicUIComponentOne.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BasicUIComponentOne.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A0EB0412220417500B47B97 /* NoticeTableViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoticeTableViewDelegate.h; sourceTree = "<group>"; };
 		6A82806C221D1BCB001AC412 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		6A82806D221D1BCB001AC412 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		6A828072221D42D4001AC412 /* NetworkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
@@ -148,6 +149,7 @@
 				6A828082221EA5DA001AC412 /* NoticeTableViewCell.h */,
 				6A828083221EA5DA001AC412 /* NoticeTableViewCell.m */,
 				6A828084221EA5DA001AC412 /* NoticeTableViewCell.xib */,
+				6A0EB0412220417500B47B97 /* NoticeTableViewDelegate.h */,
 			);
 			path = cell;
 			sourceTree = "<group>";

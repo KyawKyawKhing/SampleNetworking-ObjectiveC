@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "UIScrollView+EmptyDataSet.h"
+#import "NoticeTableViewDelegate.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HomeViewController : UIViewController <UITableViewDelegate, UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
+@interface HomeViewController : UIViewController <UITableViewDelegate, UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate,NoticeTableViewDelegate>
 @property (strong, nonatomic) NSString *name;
 @property (weak, nonatomic) IBOutlet UITableView *tvNotice;
 @end

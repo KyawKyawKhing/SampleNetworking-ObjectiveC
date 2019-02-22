@@ -95,6 +95,7 @@ NSMutableArray *noticeList = nil;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NoticeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NoticeTableViewCell" forIndexPath:indexPath];
     [cell setData:noticeList[indexPath.row]];
+    cell.delgate = self;
     return cell;
 }
 
@@ -114,4 +115,10 @@ NSMutableArray *noticeList = nil;
     return activityView;
 }
 
+//implement delegate
+- (void)clickOnFileSource:(NSString *)filesource{
+    NSLog(@"Filesource => %@ ",filesource);
+    NSURL* url = [[NSURL alloc] initWithString: filesource];
+    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+}
 @end
